@@ -15,6 +15,7 @@ Notes to remember for the project:
 -We have to add in minimum and maximum bets
 -Add in bonus for if the player gets Blackjack from the first two cards
 -We have to decide if the dealer will check for blackjack
+-Were gonna say that the minumum number of cards required for a hand shoudld be 5, this is important when it comes to shuffling
 
 How to play Blackjack:
 -The player is just trying to beat the dealer, closest to 21 without going over wins.
@@ -22,3 +23,4 @@ How to play Blackjack:
 -The dealer must hit until their total is 17 or higher
 -The dealer only shows one of their cards face up
 -The player gets blackjack if they get an Ace and a 10/face card in their first two cards
+
