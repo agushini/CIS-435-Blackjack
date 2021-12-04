@@ -1,19 +1,26 @@
-
+function start() {
+    let loginButton = document.querySelector('#btn_login');
+    let startButton = document.querySelector('#btn_start');
+    let logoutButton = document.querySelector('#btn_logout');
+    loginButton.addEventListener('click', handleLogin);
+    startButton.addEventListener('click', handleStart);
+    logoutButton.addEventListener('click', handleLogout);
+}
 
 function handleLogin(){
-    console.log("login button clicked");
+    console.log("Login button clicked");
+
 }
 
 function handleStart(){
-    console.log("start button clicked");
+    console.log("Start button clicked");
+    window.location.href = "game.html";
 }
 
-function start() {
-    const loginButton = document.querySelector('#btn_login');
-    const startButton = document.querySelector('#btn_start');
-
-    loginButton.onclick = handleLogin();
-    startButton.onclick = handleStart();
+//For some reason the logout button doesn't work
+function handleLogout(){
+    console.log("Logout button clicked");
+    window.location.href = "index.html";
 }
 
 window.onload = start;
