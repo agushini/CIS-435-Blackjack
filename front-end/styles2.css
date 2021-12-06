@@ -1,0 +1,41 @@
+.dealers_hand, .players_hand{
+    display: grid;
+    background-color: lightgreen;
+    border: 2px solid #995b37;
+    box-shadow: 5px 5px 5px grey;
+    grid-template-columns: auto auto auto auto auto;
+    padding: 10px;
+    grid-column-gap: 10px;
+    width: 850px;
+    margin: auto; 
+}
+
+.grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    font-size: 30px;
+    text-align: center;
+    height: 170px;
+    width: 130px;
+  }
+
+.d1 {
+    /*clip from the top, right, bottom, left sides*/
+    clip-path: inset(0px 1570px 530px 0px);
+}
+
+.d2 {
+    clip-path: inset(0px 1440px 530px 130px);
+    position: relative;
+    right: 130px;
+}
+
+.d3 {
+    clip-path: inset(176px 1570px 355px 0px);
+    position: relative;
+    top: -176px;
+}
+
+.d4, .d5, .p1, .p2, .p3, .p4, .p5 {
+    display: none;
+}
