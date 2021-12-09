@@ -20,3 +20,10 @@ const portNum = 3000;
 app.use(cors({origin: '*'}));
 
 app.use(express.json());
+
+
+
+//Make server listen on a port
+app.listen(portNum, () => {
+    console.log(`listening on port ${portNum}`);
+});

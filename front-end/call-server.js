@@ -1,3 +1,6 @@
+
+
+
 function start() {
     let loginButton = document.querySelector('#btn_login');
     let startButton = document.querySelector('#btn_start');
@@ -5,6 +8,14 @@ function start() {
     loginButton.addEventListener('click', handleLogin);
     startButton.addEventListener('click', handleStart);
     logoutButton.addEventListener('click', handleLogout);
+}
+
+function shuffleDeck(){
+
+}
+
+function createDeck(){
+
 }
 
 function handleLogin(){
