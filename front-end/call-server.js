@@ -1,7 +1,8 @@
 let fullDeck = Array.from(Array(4), () => new Array(13));    //deck to reinitalize deck if we run out of elements
 let playingDeck = Array.from(Array(4), () => new Array(13)); //deck we will deal from
 let playerTurn = 1;
-let playerTotal = 0; //this is the total for now until someone implements the database login function
+let cardLocation = 0;
+let playerTotal = 0;
 let dealerTotal = 0;
 
 function start() { //getting everything setup on window load
@@ -153,7 +154,7 @@ function testFunc (cardSuit, cardNum) {
 
     //trying to connect the pieces - amaya (sorry)
     var playerName;
-    var cardNum;
+    //var cardNum;
     //var cardSuit; 
 
     switch(cardNum){
@@ -169,8 +170,9 @@ function testFunc (cardSuit, cardNum) {
         case 13:
             cardNum = 'K';
             break;
-        default:   //why is there no break here
-    }
+        default:   
+            break;
+        }
 
     switch(cardSuit){
         case 0:
@@ -185,7 +187,9 @@ function testFunc (cardSuit, cardNum) {
         case 3:
             cardSuit = 'S';
             break;
-        default:   
+        default:  
+            break;
+ 
     }
 
     switch(playerTurn){
@@ -195,14 +199,17 @@ function testFunc (cardSuit, cardNum) {
         case 1:
             playerName = 'p';
             break;
-        default:   
+        default:
+            break;   
     }
 
-    console.log(cardNum + cardSuit + " " + playerName + (playerTurn + 1)); 
+    console.log(cardNum + cardSuit + " " + playerName + cardLocation); 
 
     card = cardNum + cardSuit; 
-    player = playerName + (playerTurn + 1); //i messed something up here so now it only displays in the second slot
+    player = playerName + cardLocation; 
     displayCard(card, player);
+
+
 
 }//end testFunc()
 
@@ -241,7 +248,7 @@ function checkBust(total){
     if (total >= 22){
         //playerTurn = 0; //might not need this here if i use this for player and dealer
         console.log("Player Total: BUST!! " + playerTotal);
-        document.getElementById("playerTotal").innerHtml = "Player Total: BUST!! " + playerTotal; //this does not update the html file for some reason
+        document.getElementById("playerTotal").innerHTML = "Player Total: BUST!! " + playerTotal; //this does not update the html file for some reason
         return true;
     }
     else {
@@ -269,14 +276,16 @@ function handleLogout(){
 
 function handleHit(){
     console.log("Hit button clicked");
-    if (true == checkBust(playerTotal)){
+    if (checkBust(playerTotal) == true){
         console.log("Should be a bust");
         playerTurn = 0;
     }else {
+        playerTurn = 1;
+        cardLocation++;
         var cardValue = getCardValue(dealCard());
         playerTotal = playerTotal + cardValue;
         checkBust(playerTotal);
-        console.log("Player total: "+ playerTotal);
+        console.log("Player total: " + playerTotal);
     }
 }//handleHit
 
@@ -284,6 +293,7 @@ function handleStay(){
     //stay should just switch the turns to the dealer
     playerTurn = 0;
     console.log("Stay button clicked");
+    cardLocation = 2;
 }//handleStay
 
 function handleDeal(){ 
@@ -293,15 +303,19 @@ function handleDeal(){
     console.log("Deal button clicked");
 
     for (var i = 0; i < 2; i++){ //should deal two cards to dealer and player
+        cardLocation++;
         var card = getCardValue(dealCard());;
         playerTotal = playerTotal + card;
         playerTurn = 0;
         console.log("To player: " + card);
+        if (i == 0) {
         card = getCardValue(dealCard());
         dealerTotal = dealerTotal + card;
         playerTurn = 1;
         console.log("To dealer: " + card);
+        }
         console.log("Player Total: " + playerTotal + " Dealer Total: " + dealerTotal);
+        
     }
     
     if (checkBust(playerTotal) == true){
