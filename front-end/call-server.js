@@ -244,8 +244,8 @@ function checkIfCardsLeft(){ //if the deck gets empty, it causes issues for the 
     }
 }//end checkIfCardsLeft();
 
-function checkBust(total){
-    if (total >= 22){
+function checkBust(total, bustAt){
+    if (total > bustAt){
         //playerTurn = 0; //might not need this here if i use this for player and dealer
         console.log("Player Total: BUST!! " + playerTotal);
         document.getElementById("playerTotal").innerHTML = "Player Total: BUST!! " + playerTotal; //this does not update the html file for some reason
@@ -276,24 +276,35 @@ function handleLogout(){
 
 function handleHit(){
     console.log("Hit button clicked");
-    if (checkBust(playerTotal) == true){
+    if (checkBust(playerTotal, 21) == true){
         console.log("Should be a bust");
         playerTurn = 0;
+        
     }else {
         playerTurn = 1;
         cardLocation++;
         var cardValue = getCardValue(dealCard());
         playerTotal = playerTotal + cardValue;
-        checkBust(playerTotal);
+        checkBust(playerTotal, 21);
+        if(cardLocation == 5){
+            document.getElementById("playerTotal").innerHTML = "Player got to 5 cards: WIN!! "; 
+        }
         console.log("Player total: " + playerTotal);
     }
 }//handleHit
 
 function handleStay(){ 
     //stay should just switch the turns to the dealer
-    playerTurn = 0;
     console.log("Stay button clicked");
+    playerTurn = 0;
     cardLocation = 2;
+    var cardValue = getCardValue(dealCard());
+    dealerTotal = DealerTotal + cardValue;
+    checkBust(DealerTotal, 17);
+    if(cardLocation == 5){
+        document.getElementById("dealerTotal").innerHTML = "Dealer busted" + dealerTotal; 
+    }
+    console.log("Dealer Total: " + DealerTotal);
 }//handleStay
 
 function handleDeal(){ 
@@ -318,7 +329,7 @@ function handleDeal(){
         
     }
     
-    if (checkBust(playerTotal) == true){
+    if (checkBust(playerTotal, 21) == true){
         playerTurn = 0;
     }
 }//handleDeal
