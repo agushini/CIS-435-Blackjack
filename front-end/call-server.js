@@ -13,6 +13,8 @@ function start() {
     let hitButton = document.querySelector('#btn_hit');
     let stayButton = document.querySelector('#btn_stay');
     let dealButton = document.querySelector('#btn_deal');
+
+    let testButton = document.querySelector('#test');
     
     //need to check if ef is null because otherwise we get an error of trying to assign to null variable
     if(loginButton)
@@ -30,6 +32,11 @@ function start() {
     if(dealButton)
         dealButton.addEventListener('click', handleDeal);
 
+
+    if(testButton)
+        testButton.addEventListener('click', testFunc);  
+        
+    
     createDeck();//intialize new deck
 }
 
@@ -107,6 +114,82 @@ function createDeck(){
         console.log("\n");
     }*/
 }//end copyDeck
+
+//-------------------------------------------------------------------------------------------------------
+function testFunc () {
+    var card;
+    var player;
+    var cardNum = Math.floor(Math.random() * (13 - 1 + 1) + 1);
+    var cardSuit = Math.floor(Math.random() * (4 - 1 + 1) + 1);
+    var playerName = Math.floor(Math.random() * (2 - 1 + 1) + 1);
+    var playerNum = Math.floor(Math.random() * (5 - 1 + 1) + 1);
+
+    switch(cardNum){
+        case 1:
+            cardNum = 'A';
+            break;
+        case 11:
+            cardNum = 'J';
+            break;
+        case 12:
+            cardNum = 'Q';
+            break;
+        case 13:
+            cardNum = 'K';
+            break;
+        default:   
+    }
+
+    switch(cardSuit){
+        case 1:
+            cardSuit = 'C';
+            break;
+        case 2:
+            cardSuit = 'D';
+            break;
+        case 3:
+            cardSuit = 'H';
+            break;
+        case 4:
+            cardSuit = 'S';
+            break;
+        default:   
+    }
+
+    switch(playerName){
+        case 1:
+            playerName = 'd';
+            break;
+        case 2:
+            playerName = 'p';
+            break;
+        default:   
+    }
+
+    console.log(cardNum + cardSuit + " " + playerName + playerNum); 
+
+    card = cardNum + cardSuit;
+    player = playerName + playerNum;
+    displayCard(card, player);
+
+}
+
+//displays a card on the screen. Takes in 2 strings: one for the card png, and one for the location
+//i.e. card = "2C"  player = "d4"
+function displayCard (card, player) {
+    var imgCode = "cards/" + card + ".png";
+	var img = document.createElement("img");
+	img.src = imgCode;
+
+    img.style.width = '120px';
+    img.style.height = 'auto';
+
+	var div = document.getElementById(player);
+	div.firstElementChild.replaceWith(img);
+}
+//-------------------------------------------------------------------------------------------------------
+
+
 
 function handleLogin(){ // we need to do something with this
     console.log("Login button clicked");
