@@ -3,14 +3,16 @@ Project 4 for CIS 435 web development
 
 To-Do In code:
 -Fix the bust function (kinda but doesnt output and idk if it checks at the right time)
--betting (ask ammar maybe)
+-betting (ask ammar maybe) //not working not adding
 -turn switching (kinda)
 +if shuffle deck is array is too small (recopy in the deck) DONE
 -display the dealer and player values (is broken rn)
 -only display the dealer values when the player has already pressed stand  (ask chris)
 +change it so that all face cards are value of 10 instead of their place in the array DONE
--dealer hits until over 17
++dealer hits until over 17
 -Ace is only counted as 1 rn, should be 1 or 11
+-Need a win function
+-game reset
 
 Maybe for chris:
 -implement 5 card maximum

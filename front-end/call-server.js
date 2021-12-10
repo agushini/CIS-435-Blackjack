@@ -36,7 +36,7 @@ function start() { //getting everything setup on window load
         dealButton.addEventListener('click', handleDeal);
 
     if(testButton)
-        testButton.addEventListener('click', testFunc);  
+        testButton.addEventListener('click', resetGame);  
         
     
     createDeck();//intialize new deck
@@ -209,8 +209,6 @@ function testFunc (cardSuit, cardNum) {
     player = playerName + cardLocation; 
     displayCard(card, player);
 
-
-
 }//end testFunc()
 
 //displays a card on the screen. Takes in 2 strings: one for the card png, and one for the location
@@ -298,14 +296,32 @@ function handleStay(){
     console.log("Stay button clicked");
     playerTurn = 0;
     cardLocation = 2;
-    var cardValue = getCardValue(dealCard());
-    dealerTotal = DealerTotal + cardValue;
-    checkBust(DealerTotal, 17);
-    if(cardLocation == 5){
-        document.getElementById("dealerTotal").innerHTML = "Dealer busted" + dealerTotal; 
-    }
-    console.log("Dealer Total: " + DealerTotal);
+
+    dealerPlay();
+
 }//handleStay
+
+function dealerPlay(){
+
+    while (dealerTotal <= 17) {
+        if (checkBust(dealerTotal, 21)){
+            document.getElementById("dealerTotal").innerHTML = "Dealer busted" + dealerTotal; 
+        }
+
+        var cardValue = getCardValue(dealCard());
+        dealerTotal = dealerTotal + cardValue;
+        
+        
+        
+        if(cardLocation == 5){
+            document.getElementById("dealerTotal").innerHTML = "Dealer busted" + dealerTotal; 
+            //dealer shouldn't bust at 5?
+        }
+
+        console.log("Dealer Total: " + dealerTotal);
+        cardLocation++;
+    }
+}
 
 function handleDeal(){ 
     if (checkIfCardsLeft() == false){
@@ -320,10 +336,10 @@ function handleDeal(){
         playerTurn = 0;
         console.log("To player: " + card);
         if (i == 0) {
-        card = getCardValue(dealCard());
-        dealerTotal = dealerTotal + card;
-        playerTurn = 1;
-        console.log("To dealer: " + card);
+            card = getCardValue(dealCard());
+            dealerTotal = dealerTotal + card;
+            playerTurn = 1;
+            console.log("To dealer: " + card);
         }
         console.log("Player Total: " + playerTotal + " Dealer Total: " + dealerTotal);
         
@@ -334,6 +350,37 @@ function handleDeal(){
     }
 }//handleDeal
 
+function resetGame(){
 
+    playerTotal = 0;
+    dealerTotal = 0;
+    cardLocation = 0;
+    document.getElementById("dealerTotal").innerHTML = "Dealer Total: ";
+    document.getElementById("playerTotal").innerHTML = "Player Total: ";
+
+	var img = document.createElement("img");
+    img.style.width = '120px';
+    img.style.height = 'auto';
+
+	img.src = "cards/red_back.png";
+	var div = document.getElementById("d1");
+	div.firstElementChild.replaceWith(img);
+
+    var img = document.createElement("img");
+    img.style.width = '120px';
+    img.style.height = 'auto';
+
+	img.src = "cards/yellow_back.png";
+	var div = document.getElementById("d2");
+	div.firstElementChild.replaceWith(img);
+
+    var img = document.createElement("img");
+    img.style.width = '120px';
+    img.style.height = 'auto';
+    
+	img.src = "cards/green_back.png";
+	var div = document.getElementById("d3");
+	div.firstElementChild.replaceWith(img);
+}
 
 window.onload = start;
