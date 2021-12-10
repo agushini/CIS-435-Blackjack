@@ -381,6 +381,62 @@ function resetGame(){
 	img.src = "cards/green_back.png";
 	var div = document.getElementById("d3");
 	div.firstElementChild.replaceWith(img);
+
+    var img = document.createElement("img");
+    img.style.width = '120px';
+    img.style.height = 'auto';
+    
+	img.src = "cards/blue_back.png";
+	var div = document.getElementById("d4");
+	div.firstElementChild.replaceWith(img);
+
+    var img = document.createElement("img");
+    img.style.width = '120px';
+    img.style.height = 'auto';
+    
+	img.src = "cards/purple_back.png";
+	var div = document.getElementById("d5");
+	div.firstElementChild.replaceWith(img);
+
+    var img = document.createElement("img");
+    img.style.width = '120px';
+    img.style.height = 'auto';
+
+	img.src = "cards/red_back.png";
+	var div = document.getElementById("p1");
+	div.firstElementChild.replaceWith(img);
+
+    var img = document.createElement("img");
+    img.style.width = '120px';
+    img.style.height = 'auto';
+
+	img.src = "cards/yellow_back.png";
+	var div = document.getElementById("p2");
+	div.firstElementChild.replaceWith(img);
+
+    var img = document.createElement("img");
+    img.style.width = '120px';
+    img.style.height = 'auto';
+    
+	img.src = "cards/green_back.png";
+	var div = document.getElementById("p3");
+	div.firstElementChild.replaceWith(img);
+
+    var img = document.createElement("img");
+    img.style.width = '120px';
+    img.style.height = 'auto';
+    
+	img.src = "cards/blue_back.png";
+	var div = document.getElementById("p4");
+	div.firstElementChild.replaceWith(img);
+
+    var img = document.createElement("img");
+    img.style.width = '120px';
+    img.style.height = 'auto';
+    
+	img.src = "cards/purple_back.png";
+	var div = document.getElementById("p5");
+	div.firstElementChild.replaceWith(img);
 }
 
 window.onload = start;
