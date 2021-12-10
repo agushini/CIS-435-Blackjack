@@ -1,14 +1,16 @@
 let fullDeck = Array.from(Array(4), () => new Array(13));    //deck to reinitalize deck if we run out of elements
 let playingDeck = Array.from(Array(4), () => new Array(13)); //deck we will deal from
-let playerTurn;
+let playerTurn = 1;
 let playerTotal = 0; //this is the total for now until someone implements the database login function
 let dealerTotal = 0;
 
-function start() {
+function start() { //getting everything setup on window load
 
+    //in index.html
     let loginButton = document.querySelector('#btn_login');
     let startButton = document.querySelector('#btn_start');
     
+    //in game.html
     let logoutButton = document.querySelector('#btn_logout');
     let hitButton = document.querySelector('#btn_hit');
     let stayButton = document.querySelector('#btn_stay');
@@ -32,13 +34,12 @@ function start() {
     if(dealButton)
         dealButton.addEventListener('click', handleDeal);
 
-
     if(testButton)
         testButton.addEventListener('click', testFunc);  
         
     
     createDeck();//intialize new deck
-}
+}//end start()
 
 
 function randomNum(a){ //returns 0-a randomly, no decimal and is inclusive
@@ -47,13 +48,15 @@ function randomNum(a){ //returns 0-a randomly, no decimal and is inclusive
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1) + min);
-}
+}// end randomNum()
 
 function dealCard(){
     var y = randomNum(playingDeck.length-1); 
     var x = randomNum(playingDeck[y].length-1);
     var output = 0;
-    /* Testing purposes
+    
+    /* 
+    Testing purposes
     console.log(" y length : " + playingDeck.length + " x length : " + playingDeck[y].length);
     console.log("Array indexes for the card  y,x: " + y + " " + x);
     console.log(playingDeck[y][x])
@@ -62,7 +65,11 @@ function dealCard(){
     output = playingDeck[y][x]; //this will be the card that is dealt
     playingDeck[y].splice(x,1);//remove that card from the deck
     
-    console.log(" y length : " + playingDeck.length + " x length : " + playingDeck[y].length);
+    console.log("Array indexes for the card  y,x: " + y + " " + x);
+    testFunc(y,output);
+
+
+    //console.log(" y length : " + playingDeck.length + " x length : " + playingDeck[y].length);
     
     return output;
 
@@ -76,10 +83,29 @@ function dealCard(){
             console.log(playingDeck[i][j]);
         }
         console.log("newline");
-    }*/
+    }
+    */
 }//end dealCard()
 
+function getCardValue(card){
+    var output = 0;
+    switch (card){
+        case 11:
+        case 12:
+        case 13:
+            output = 10;
+            break;
+        default:
+            output = card;
+            break;
+    }
+    
+    
+    return output;
+}
+
 function copyDeck(){
+    console.log("Deck Copied");
     for(var i = 0; i < 4; i++){
         var x = 1;
         for(var j = 0; j < 13; j++){
@@ -116,13 +142,19 @@ function createDeck(){
 }//end copyDeck
 
 //-------------------------------------------------------------------------------------------------------
-function testFunc () {
+function testFunc (cardSuit, cardNum) {
     var card;
     var player;
-    var cardNum = Math.floor(Math.random() * (13 - 1 + 1) + 1);
-    var cardSuit = Math.floor(Math.random() * (4 - 1 + 1) + 1);
-    var playerName = Math.floor(Math.random() * (2 - 1 + 1) + 1);
-    var playerNum = Math.floor(Math.random() * (5 - 1 + 1) + 1);
+    //var cardNum = Math.floor(Math.random() * (13 - 1 + 1) + 1); 
+    //var cardSuit = Math.floor(Math.random() * (4 - 1 + 1) + 1);
+    //var playerName = Math.floor(Math.random() * (2 - 1 + 1) + 1);
+    //var playerNum = Math.floor(Math.random() * (5 - 1 + 1) + 1);
+
+
+    //trying to connect the pieces - amaya (sorry)
+    var playerName;
+    var cardNum;
+    //var cardSuit; 
 
     switch(cardNum){
         case 1:
@@ -137,42 +169,42 @@ function testFunc () {
         case 13:
             cardNum = 'K';
             break;
-        default:   
+        default:   //why is there no break here
     }
 
     switch(cardSuit){
-        case 1:
+        case 0:
             cardSuit = 'C';
             break;
-        case 2:
+        case 1:
             cardSuit = 'D';
             break;
-        case 3:
+        case 2:
             cardSuit = 'H';
             break;
-        case 4:
+        case 3:
             cardSuit = 'S';
             break;
         default:   
     }
 
-    switch(playerName){
-        case 1:
+    switch(playerTurn){
+        case 0:
             playerName = 'd';
             break;
-        case 2:
+        case 1:
             playerName = 'p';
             break;
         default:   
     }
 
-    console.log(cardNum + cardSuit + " " + playerName + playerNum); 
+    console.log(cardNum + cardSuit + " " + playerName + (playerTurn + 1)); 
 
-    card = cardNum + cardSuit;
-    player = playerName + playerNum;
+    card = cardNum + cardSuit; 
+    player = playerName + (playerTurn + 1); //i messed something up here so now it only displays in the second slot
     displayCard(card, player);
 
-}
+}//end testFunc()
 
 //displays a card on the screen. Takes in 2 strings: one for the card png, and one for the location
 //i.e. card = "2C"  player = "d4"
@@ -189,39 +221,93 @@ function displayCard (card, player) {
 }
 //-------------------------------------------------------------------------------------------------------
 
+function checkIfCardsLeft(){ //if the deck gets empty, it causes issues for the array and dealing so this is a "reshuffle"
+    var count = 0;
+    for (var i = 0; i < playingDeck.length; i++){
+        for (var j = 0; j < playingDeck[i].length; j++){
+            count ++;
+        }
+    }
+    console.log(" Count: " + count);
+    if (count >= 13){
+        return true;
+    }
+    else if (count < 13){
+        return false;
+    }
+}//end checkIfCardsLeft();
+
+function checkBust(total){
+    if (total >= 22){
+        //playerTurn = 0; //might not need this here if i use this for player and dealer
+        console.log("Player Total: BUST!! " + playerTotal);
+        document.getElementById("playerTotal").innerHtml = "Player Total: BUST!! " + playerTotal; //this does not update the html file for some reason
+        return true;
+    }
+    else {
+        return false;
+    }
+
+}//end checkBust()
 
 
 function handleLogin(){ // we need to do something with this
     console.log("Login button clicked");
 
-}
+}//end handleLogin
 
 function handleStart(){
     console.log("Start button clicked");
     window.location.href = "game.html";
-}    
+}//end handleStart    
 
-//For some reason the logout button doesn't work
+//logout button should work now -Amaya
 function handleLogout(){
     console.log("Logout button clicked");
     window.location.href = "index.html";
-}
+}//end handleLogout
 
-function handleHit(){ // we need to do something with this
+function handleHit(){
     console.log("Hit button clicked");
-    playerTotal = playerTotal + dealCard();
-}
+    if (true == checkBust(playerTotal)){
+        console.log("Should be a bust");
+        playerTurn = 0;
+    }else {
+        var cardValue = getCardValue(dealCard());
+        playerTotal = playerTotal + cardValue;
+        checkBust(playerTotal);
+        console.log("Player total: "+ playerTotal);
+    }
+}//handleHit
 
 function handleStay(){ 
     //stay should just switch the turns to the dealer
+    playerTurn = 0;
     console.log("Stay button clicked");
-}
+}//handleStay
 
 function handleDeal(){ 
+    if (checkIfCardsLeft() == false){
+        copyDeck();
+    }
     console.log("Deal button clicked");
-    dealCard();
 
-}
+    for (var i = 0; i < 2; i++){ //should deal two cards to dealer and player
+        var card = getCardValue(dealCard());;
+        playerTotal = playerTotal + card;
+        playerTurn = 0;
+        console.log("To player: " + card);
+        card = getCardValue(dealCard());
+        dealerTotal = dealerTotal + card;
+        playerTurn = 1;
+        console.log("To dealer: " + card);
+        console.log("Player Total: " + playerTotal + " Dealer Total: " + dealerTotal);
+    }
+    
+    if (checkBust(playerTotal) == true){
+        playerTurn = 0;
+    }
+}//handleDeal
 
 
 

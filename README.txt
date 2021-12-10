@@ -1,6 +1,21 @@
 # CIS-435-Blackjack
 Project 4 for CIS 435 web development
 
+To-Do In code:
+-Fix the bust function (kinda but doesnt output and idk if it checks at the right time)
+-betting (ask ammar maybe)
+-turn switching (kinda)
++if shuffle deck is array is too small (recopy in the deck) DONE
+-display the dealer and player values (is broken rn)
+-only display the dealer values when the player has already pressed stand  (ask chris)
++change it so that all face cards are value of 10 instead of their place in the array DONE
+-dealer hits until over 17
+-Ace is only counted as 1 rn, should be 1 or 11
+
+Maybe for chris:
+-implement 5 card maximum
+-make it so that the cards enter in order
+-make it so that the dealers cards show when the player hits stand
 
 
 Things to consider/accomplish:
@@ -18,6 +33,7 @@ Notes to remember for the project:
 -Were gonna say that the minumum number of cards required for a hand shoudld be 5, this is important when it comes to shuffling
 
 How to play Blackjack:
+-Number cards worth their number, face cards worth 10
 -The player is just trying to beat the dealer, closest to 21 without going over wins.
 -The player can stop hitting (asking for cards) at whatever point they want
 -The dealer must hit until their total is 17 or higher
