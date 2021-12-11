@@ -3,6 +3,7 @@ echo "Calling incrementWin.php";
 $username = $_POST["username"];
 $wins = $_POST["wins"];
 
+//Make sure the localhost port number is the same port number as MySQL on XAMPP
 $dsn = 'mysql:host=localhost:3306;dbname=blackjack';
 $juicy = 'JuicyJ';
 $jay = 'ice';
