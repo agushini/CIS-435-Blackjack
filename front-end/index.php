@@ -48,7 +48,7 @@
         }
         ?>
 
-        <form action="test.php" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+        <form action="test.php" method="post">
 
         Username:
         <input type="text" name="username">
