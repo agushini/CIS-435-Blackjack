@@ -45,10 +45,10 @@ $statement2->bindValue(':wins', $wins);
 $statement2->execute();
 $statement2->closeCursor();
 echo "New account $username created!";
-header("Location: game.php");
+header("Location: game.html");
 //Else, just tell the user that they are logged in.
 } else {
     echo "Logged in as $username!";
-    header("Location: game.php");
+    header("Location: game.html");
 }
 ?>
