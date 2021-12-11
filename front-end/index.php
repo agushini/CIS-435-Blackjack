@@ -7,41 +7,6 @@
         <script src="call-server.js"></script>
     </head>
     <body>
-<<<<<<< HEAD
-        
-    <?php
-//define variables and set to empty values
-$user_name = $password = "";
-
-
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = testInput($_POST["username"]);
-    $password = testInput($_POST["password"]);
-}
-
-if (empty($_POST["username"])) {
-    $usernameErr = "Username is required";
-} else {
-    $username = testInput($_POST["username"]);
-}
-
-if (empty($_POST["password"])) {
-    $passwordErr = "Password is required";
-} else {
-    $password = testInput($_POST["password"]);
-}
-
-function testInput($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
-?>
-
-=======
->>>>>>> 509e279bda775485a91beacc127195f2b0f2f40d
         <h1 id="welcome">Welcome to BlackJack!</h1>
         <div id="instructions">
         <h2>How to Play: </h2>
@@ -54,11 +19,7 @@ function testInput($data) {
                 <li>If you get the same number as the dealer you it's a tie.</li>
             </ul>
         </div>
-<<<<<<< HEAD
         <form action="test.php" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-=======
-        <method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
->>>>>>> 509e279bda775485a91beacc127195f2b0f2f40d
 
         Username:
         <input type="text" name="username">
@@ -70,18 +31,13 @@ function testInput($data) {
         <br>
         <input type="submit" value="Login">
         </form>
+        
         <br>
         <input type="button" id="btn_start" value="Start Game">
         <br>
         <img src=cards/back_cards-07.png width="100%" height="auto">
      </form>
-<<<<<<< HEAD
      </div>
-=======
-
-
      
-
->>>>>>> 509e279bda775485a91beacc127195f2b0f2f40d
     </body>
 </html>
