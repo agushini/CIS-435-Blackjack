@@ -17,6 +17,7 @@ try {
     echo "<p>An error occured while connecting to the database: $error_message </p>";
 }
 
+//FIXME: Not incrementing wins. Honestly, I don't even think this file is being called.
 $wins++;
 $query = "UPDATE blackjack
           SET wins = :wins
