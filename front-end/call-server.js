@@ -362,13 +362,11 @@ function handleDeal(){
 }//handleDeal
 
 function checkWin(){
-    //if(checkBust(playerTotal, 21) == true){
-      //  document.getElementById("whoWins").innerHTML = "Dealer Wins! Player Busted";
-    //}
     if((playerTotal > dealerTotal) || (dealerTotal > 21)){
         //player wins
+        const xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "incrementWin.php");
         document.getElementById("whoWins").innerHTML = "Player Wins!";
-        //ETHAN AND AMMAR THIS IS WHERE WIN IS
     }
     else if ((playerTotal < dealerTotal) && (dealerTotal <= 21)){
         //player loses

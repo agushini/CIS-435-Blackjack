@@ -1,6 +1,16 @@
 # CIS-435-Blackjack
 Project 4 for CIS 435 web development
 
+How to use the project with XAMPP
+1. Download and install XAMPP
+2. Copy and paste the entire project folder into "/xampp/htdocs".
+3. Open XAMPP and run both the Apache and MySQL server.
+4. Open up your web browser and type "localhost:<insert Port #/file path from htdocs to front-end folder/index.php"
+    EX: http://localhost:1337/CIS%20435%20Project%204/CIS-435-Blackjack/front-end/index.php
+        -My Apache port number is 1337
+        -My file path to index.php is "CIS 435 Project 4/CIS-435-Blackjack/front-end/index.php"
+5. From there, you should be able to view the index.php as an HTML web page.
+
 To-Do In code:
 -Fix the bust function (kinda but doesnt output and idk if it checks at the right time)
 -betting (ask ammar maybe) //not working not adding
