@@ -19,6 +19,35 @@
                 <li>If you get the same number as the dealer you it's a tie.</li>
             </ul>
         </div>
+
+        <?php
+        $username = $password = "";
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $username = testInput($_POST["username"]);
+            $password = testInput($_POST["password"]);
+        }
+        
+        if (empty($_POST["username"])) {
+            $usernameErr = "Username is required";
+        } else {
+            $username = testInput($_POST["username"]);
+        }
+        
+        if (empty($_POST["password"])) {
+            $passwordErr = "Password is required";
+        } else {
+            $password = testInput($_POST["password"]);
+        }
+        
+        function testInput($data) {
+            $data = trim($data);
+            $data = stripslashes($data);
+            $data = htmlspecialchars($data);
+            return $data;
+        }
+        ?>
+
         <form action="test.php" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 
         Username:
@@ -36,7 +65,6 @@
         <input type="button" id="btn_start" value="Start Game">
         <br>
         <img src=cards/back_cards-07.png width="100%" height="auto">
-     </form>
      </div>
      
     </body>

@@ -1,6 +1,6 @@
  <?php
 //define variables and set to empty values
-$username = $password = "";
+/*$username = $password = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = testInput($_POST["username"]);
@@ -24,7 +24,7 @@ function testInput($data) {
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;
-}
+}*/
 
 echo("Welcome to the jungle");
 
@@ -34,7 +34,7 @@ $password = "password";
 $database = "blackjack";
 
 //Create connection
-$conn = mysqli_connect($servername, $username, $password, $database);
+$conn = new mysqli($servername, $username, $password, $database);
 echo("Is there anybody out there?");
 echo($servername . $username . $password . $database);
 
