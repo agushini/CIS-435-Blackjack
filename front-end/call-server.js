@@ -246,7 +246,9 @@ function checkBust(total, bustAt){
     if (total > bustAt){
         //playerTurn = 0; //might not need this here if i use this for player and dealer
         console.log("Player Total: BUST!! " + playerTotal);
-        document.getElementById("playerTotal").innerHTML = "Player Total: BUST!! " + playerTotal; //this does not update the html file for some reason
+        document.getElementById("playerTotal").innerHTML = "Player Total: BUST!! " + playerTotal;
+        document.getElementById("whoWins").innerHTML = "Dealer Wins! Player busted!"; 
+
         return true;
     }
     else {
@@ -282,7 +284,10 @@ function handleHit(){
         playerTurn = 1;
         cardLocation++;
         var cardValue = getCardValue(dealCard());
+         
         playerTotal = playerTotal + cardValue;
+        document.getElementById("playerTotal").innerHTML = "Player Total: " + playerTotal;
+
         checkBust(playerTotal, 21);
         if(cardLocation == 5){
             document.getElementById("playerTotal").innerHTML = "Player got to 5 cards: WIN!! "; 
@@ -305,21 +310,25 @@ function dealerPlay(){
 
     while (dealerTotal <= 17) {
         if (checkBust(dealerTotal, 21)){
-            document.getElementById("dealerTotal").innerHTML = "Dealer busted" + dealerTotal; 
+            document.getElementById("dealerTotal").innerHTML = "Dealer busted: " + dealerTotal; 
         }
 
         var cardValue = getCardValue(dealCard());
         dealerTotal = dealerTotal + cardValue;
-        
-        
-        
+        document.getElementById("dealerTotal").innerHTML = "Dealer Total: " + dealerTotal;
+
+        /*
         if(cardLocation == 5){
-            document.getElementById("dealerTotal").innerHTML = "Dealer busted" + dealerTotal; 
+            document.getElementById("dealerTotal").innerHTML = "Dealer busted: " + dealerTotal; 
             //dealer shouldn't bust at 5?
         }
+        */
 
         console.log("Dealer Total: " + dealerTotal);
         cardLocation++;
+
+        checkWin();
+        
     }
 }
 
@@ -333,11 +342,13 @@ function handleDeal(){
         cardLocation++;
         var card = getCardValue(dealCard());;
         playerTotal = playerTotal + card;
+        document.getElementById("playerTotal").innerHTML = "Player Total: " + playerTotal;
         playerTurn = 0;
         console.log("To player: " + card);
         if (i == 0) {
             card = getCardValue(dealCard());
             dealerTotal = dealerTotal + card;
+            document.getElementById("dealerTotal").innerHTML = "Dealer Total: " + dealerTotal;
             playerTurn = 1;
             console.log("To dealer: " + card);
         }
@@ -350,13 +361,35 @@ function handleDeal(){
     }
 }//handleDeal
 
+function checkWin(){
+    //if(checkBust(playerTotal, 21) == true){
+      //  document.getElementById("whoWins").innerHTML = "Dealer Wins! Player Busted";
+    //}
+    if((playerTotal > dealerTotal) || (dealerTotal > 21)){
+        //player wins
+        document.getElementById("whoWins").innerHTML = "Player Wins!";
+        //ETHAN AND AMMAR THIS IS WHERE WIN IS
+    }
+    else if ((playerTotal < dealerTotal) && (dealerTotal <= 21)){
+        //player loses
+        document.getElementById("whoWins").innerHTML = "Dealer Wins!";
+    }
+    else {
+        document.getElementById("whoWins").innerHTML = "Nobody Wins, Tie";
+        //push
+    }
+}
+
+
 function resetGame(){
 
+    playerTurn = 1;
     playerTotal = 0;
     dealerTotal = 0;
     cardLocation = 0;
     document.getElementById("dealerTotal").innerHTML = "Dealer Total: ";
     document.getElementById("playerTotal").innerHTML = "Player Total: ";
+    document.getElementById("whoWins").innerHTML = "";
 
 	var img = document.createElement("img");
     img.style.width = '120px';
