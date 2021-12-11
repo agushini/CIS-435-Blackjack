@@ -48,7 +48,7 @@
         }
         ?>
 
-        <form action="test.php" method="post">
+        <form action="login.php" method="post">
 
         Username:
         <input type="text" name="username">
@@ -59,11 +59,10 @@
         <span class="error">* <?php echo $passwordErr;?></span>
         <br>
         <input type="submit" value="Login">
-        </form>
-        
         <br>
         <input type="button" id="btn_start" value="Start Game">
         <br>
+        </form>
         <img src=cards/back_cards-07.png width="100%" height="auto">
      </div>
      
