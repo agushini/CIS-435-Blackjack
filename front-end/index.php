@@ -7,6 +7,7 @@
         <script src="call-server.js"></script>
     </head>
     <body>
+<<<<<<< HEAD
         
     <?php
 //define variables and set to empty values
@@ -39,6 +40,8 @@ function testInput($data) {
 }
 ?>
 
+=======
+>>>>>>> 509e279bda775485a91beacc127195f2b0f2f40d
         <h1 id="welcome">Welcome to BlackJack!</h1>
         <div id="instructions">
         <h2>How to Play: </h2>
@@ -51,7 +54,11 @@ function testInput($data) {
                 <li>If you get the same number as the dealer you it's a tie.</li>
             </ul>
         </div>
+<<<<<<< HEAD
         <form action="test.php" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+=======
+        <method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+>>>>>>> 509e279bda775485a91beacc127195f2b0f2f40d
 
         Username:
         <input type="text" name="username">
@@ -68,6 +75,13 @@ function testInput($data) {
         <br>
         <img src=cards/back_cards-07.png width="100%" height="auto">
      </form>
+<<<<<<< HEAD
      </div>
+=======
+
+
+     
+
+>>>>>>> 509e279bda775485a91beacc127195f2b0f2f40d
     </body>
 </html>

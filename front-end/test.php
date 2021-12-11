@@ -28,10 +28,15 @@ function testInput($data) {
     return $data;
 }
 
+<<<<<<< HEAD
 //echo("Welcome to the jungle");
 
 $servername = "localhost:1337";
 $username = "cis435";
+=======
+$servername = "localhost";
+$username = "username";
+>>>>>>> 509e279bda775485a91beacc127195f2b0f2f40d
 $password = "password";
 
 //Create connection
@@ -41,6 +46,7 @@ $conn = new mysqli($servername, $username, $password);
 if ($conn->connect_error) {
     die("Connection failed" . $conn->connect_error);
 }
+<<<<<<< HEAD
 
 $sql = "CREATE TABLE BlackJack (
     username VARCHAR(30) NOT NULL PRIMARY KEY,
@@ -65,4 +71,7 @@ if ($conn->query($sql) === TRUE) {
 }*/
 
 //$conn->close();
+=======
+echo "Connected successfully";
+>>>>>>> 509e279bda775485a91beacc127195f2b0f2f40d
 ?>
