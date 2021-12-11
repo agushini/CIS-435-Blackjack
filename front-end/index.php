@@ -7,7 +7,6 @@
         <script src="call-server.js"></script>
     </head>
     <body>
-
         <h1 id="welcome">Welcome to BlackJack!</h1>
         <div id="instructions">
         <h2>How to Play: </h2>
@@ -20,20 +19,26 @@
                 <li>If you get the same number as the dealer you it's a tie.</li>
             </ul>
         </div>
-        <form action="connect.php" method="post">
-            <div>
-            <input type="text" name="user">
-            <br>
-            <input type="password" name="pass">
-            <br>
-            <input type="submit" value="Login">
-            </div>
-            
-            </form>
+        <method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+
+        Username:
+        <input type="text" name="username">
+        <span class="error">* <?php echo $usernameErr;?></span>
+        <br>
+
+        Password: <input type="text" name="password">
+        <span class="error">* <?php echo $passwordErr;?></span>
+        <br>
+        <input type="submit" value="Login">
+        </form>
         <br>
         <input type="button" id="btn_start" value="Start Game">
         <br>
         <img src=cards/back_cards-07.png width="100%" height="auto">
+     </form>
+
+
+     
 
     </body>
 </html>
