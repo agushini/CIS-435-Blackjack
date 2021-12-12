@@ -1,12 +1,12 @@
 <?php
 $username = $_POST["username"];
-$password = $_POST["password"];
+$pa55word = $_POST["pa55word"];
 
 //Make sure the localhost port number is the same port number as MySQL on XAMPP
 $dsn = 'mysql:host=localhost:3306;dbname=blackjack';
 
-//Create a user for phpMyAdmin with username 'JuicyJ' password 'ice'.
-//User accounts -> Add user account -> User name: "JuicyJ" | Host name: use drop down menu to select "Local" | password: "ice" | check all for global privileges
+//Create a user for phpMyAdmin with username 'JuicyJ' pa55word 'ice'.
+//User accounts -> Add user account -> User name: "JuicyJ" | Host name: use drop down menu to select "Local" | pa55word: "ice" | check all for global privileges
 $juicy = 'JuicyJ';
 $jay = 'ice';
 
@@ -19,4 +19,4 @@ try {
     $error_message = $e->getMessage();
     echo "<p>An error occured while connecting to the database: $error_message </p>";
 }
-?>
+?>  
