@@ -9,7 +9,7 @@ $dsn = 'mysql:host=localhost:3306;dbname=blackjack';
 $juicy = 'JuicyJ';
 $jay = 'ice';
 
-$link = mysqli_connect("localhost",$juicy,$jay,"blackjack");
+$link = mysqli_connect("localhost", $juicy, $jay, "blackjack");
 
 //Connect to the database
 $db = new PDO($dsn, $juicy, $jay);

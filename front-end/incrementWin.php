@@ -3,13 +3,13 @@ require_once('database.php');
 
 $username = $_GET['User'];
 
-echo $username;
+//echo $username;
 
 $result = mysqli_query($link,"SELECT wins FROM blackjack WHERE username = '$username'");
-$rowWins = mysqli_fetch_assoc($result);
-$count = $row["wins"];
-$count++;
-$result = mysqli_query($link,"UPDATE blackjack SET wins = '$count' WHERE username = '$username'");
+$winRow = mysqli_fetch_assoc($result);
+$newScore = $winRow["wins"];
+$newScore++;
+$result = mysqli_query($link,"UPDATE blackjack SET wins = '$newScore' WHERE username = '$username'");
 header("Location: game.php");
 
 //Get the wins from the database by the username
