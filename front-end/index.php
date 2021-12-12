@@ -47,19 +47,19 @@
             return $data;
         }
         ?>
-
         <form action="login.php" method="post" id="form">
-
         Username:
         <input type="text" name="username">
         <span class="error">* <?php echo $usernameErr;?></span>
         <br>
-
         Password: <input type="text" name="pa55word">
         <span class="error">* <?php echo $pa55wordErr;?></span>
         <br>
         <input type="submit" value="Login">
-        <br>
+        <br><br>
+        </form>
+        <form method="post" action="leaderboard.php">
+            <input type="submit" value="View leaderboards">
         </form>
         <img src=cards/back_cards-07.png width="100%" height="auto">
      </div>

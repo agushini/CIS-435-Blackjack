@@ -1,6 +1,8 @@
  <?php
  require_once('database.php');
-
+ $username = $_POST["username"];
+ $pa55word = $_POST["pa55word"];
+ 
 //Check if the username already exists within the database
 $query1 = 'SELECT * FROM blackjack
            WHERE username = :username';
@@ -36,7 +38,8 @@ header("Location: game.html");
     $statement3 = $db->prepare($query3);
     $statement3->bindValue(':username', $username);
     $statement3->bindValue(':pa55word', $pa55word);
-    $product3 = $statement3->fetch();
+    $product3 = $statement3->setFetchMode(PDO::FETCH_ASSOC);
+    
     $statement3->closeCursor();
     if (!$product3) {
         echo "Login failed. Please enter correct username and password.";

@@ -1,6 +1,5 @@
 <?php
-$username = $_POST["username"];
-$pa55word = $_POST["pa55word"];
+
 
 //Make sure the localhost port number is the same port number as MySQL on XAMPP
 $dsn = 'mysql:host=localhost:3306;dbname=blackjack';
