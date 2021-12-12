@@ -3,6 +3,7 @@
  $username = $_POST["username"];
  $pa55word = $_POST["pa55word"];
 
+ //This should be working alongside AJAX
  echo json_encode($username);
 
 //Check if the username already exists within the database
