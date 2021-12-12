@@ -226,7 +226,7 @@ function checkBust(total, bustAt){
 //logout button should work now -Amaya
 function handleLogout(){
     console.log("Logout button clicked");
-    window.location.href = "index.html";
+    window.location.href = "index.php";
 }//end handleLogout
 
 function handleHit(){
