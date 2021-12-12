@@ -49,13 +49,13 @@
         ?>
         <form action="login.php" method="post" id="form">
         Username:
-        <input type="text" name="username">
+        <input type="text" name="username" id="user">
         <span class="error">* <?php echo $usernameErr;?></span>
         <br>
         Password: <input type="text" name="pa55word">
         <span class="error">* <?php echo $pa55wordErr;?></span>
         <br>
-        <input type="submit" value="Login">
+        <input type="submit" value="Login" onclick = setCookie('user', document.getElementById("user").value, 365);>
         <br><br>
         </form>
         <form method="post" action="leaderboard.php">

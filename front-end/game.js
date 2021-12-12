@@ -4,6 +4,23 @@ let playerTurn = 1;
 let cardLocation = 0;
 let playerTotal = 0;
 let dealerTotal = 0;
+var user = "";
+
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
 
 function start() { //getting everything setup on window load
     
@@ -310,11 +327,8 @@ function handleDeal(){
 
 function checkWin(){
     if((playerTotal > dealerTotal) || (dealerTotal > 21)){
-        //player wins
-        /*const xhttp = new XMLHttpRequest();
-        xhttp.open("GET", "incrementWin.php", true);
-        xhttp.send();*/
-        window.location.href = "incrementWin.php";
+        var username = getCookie("user");
+        window.location.href = "incrementWin.php?User=" + username;
         document.getElementById("whoWins").innerHTML = "Player Wins!";
     }
     else if ((playerTotal < dealerTotal) && (dealerTotal <= 21)){
