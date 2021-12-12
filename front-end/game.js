@@ -311,9 +311,10 @@ function handleDeal(){
 function checkWin(){
     if((playerTotal > dealerTotal) || (dealerTotal > 21)){
         //player wins
-        const xhttp = new XMLHttpRequest();
-        xhttp.open("POST", "incrementWin.php");
-        xhttp.send();
+        /*const xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "incrementWin.php", true);
+        xhttp.send();*/
+        window.location.href = "incrementWin.php";
         document.getElementById("whoWins").innerHTML = "Player Wins!";
     }
     else if ((playerTotal < dealerTotal) && (dealerTotal <= 21)){

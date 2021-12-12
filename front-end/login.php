@@ -3,6 +3,8 @@
  $username = $_POST["username"];
  $pa55word = $_POST["pa55word"];
 
+ echo json_encode($username);
+
 //Check if the username already exists within the database
 $query1 = 'SELECT * FROM blackjack
            WHERE username = :username';
@@ -28,7 +30,7 @@ $statement2->bindValue(':wins', $wins);
 $statement2->execute();
 $statement2->closeCursor();
 echo "New account $username created!";
-header("Location: game.html");
+header("Location: game.php");
 //Else, we know that the username already exists.
 } else {
     //Check to see if the username and pa55word are correct.
@@ -46,7 +48,7 @@ header("Location: game.html");
         echo "Login failed. Please enter correct username and password.";
     } else {
         echo "Logged in as $username!";
-        header("Location: game.html");
+        header("Location: game.php");
     }
     //echo "Is this happening?";
     //echo $product3;

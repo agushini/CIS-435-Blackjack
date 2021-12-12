@@ -1,3 +1,12 @@
+<script>
+ var req = new XMLHttpRequest();
+ req.onload = function() {
+     console.log(this.responseText);
+ };
+ req.open("GET", "login.php", true);
+ req.send();
+ </script>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
@@ -7,6 +16,9 @@
         <script src="game.js"></script>
     </head>
     <body>
+        <header>
+            <p><?php echo $username;?></p>
+        </header>
         <div>
             <h2> Dealers Hand</h2>
             <div class="dealers_hand">
