@@ -4,7 +4,7 @@ require_once('database.php');
 echo "Calling incrementWin.php";
 
 //Get the wins from the database by the username
-/*$query1 = 'SELECT wins FROM blackjack
+$query1 = 'SELECT wins FROM blackjack
            WHERE username = :username';
 $statement1 = $db->prepare($query1);
 $statement1->bindValue(':username', $username);
@@ -23,5 +23,5 @@ $statement2 = $db->prepare($query);
 $statement2->bindValue(':wins', $wins);
 $statement2->bindValue(':username', $username);
 $statement2->execute();
-$statement2->closeCursor();*/
+$statement2->closeCursor();
 ?>

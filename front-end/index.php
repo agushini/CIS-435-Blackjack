@@ -3,8 +3,8 @@
     <head>
         <title>BlackJack!</title>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="styles1.css">
-        <script src="call-server.js"></script>
+        <link rel="stylesheet" href="indexStyle.css">
+        <script src="index.js"></script>
     </head>
     <body>
         <h1 id="welcome">Welcome to BlackJack!</h1>
@@ -21,11 +21,11 @@
         </div>
 
         <?php
-        $username = $password = "";
+        $username = $pa55word = "";
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $username = testInput($_POST["username"]);
-            $password = testInput($_POST["password"]);
+            $pa55word = testInput($_POST["pa55word"]);
         }
         
         if (empty($_POST["username"])) {
@@ -34,10 +34,10 @@
             $username = testInput($_POST["username"]);
         }
         
-        if (empty($_POST["password"])) {
-            $passwordErr = "Password is required";
+        if (empty($_POST["pa55word"])) {
+            $pa55wordErr = "Password is required";
         } else {
-            $password = testInput($_POST["password"]);
+            $pa55word = testInput($_POST["pa55word"]);
         }
         
         function testInput($data) {
@@ -48,19 +48,17 @@
         }
         ?>
 
-        <form action="login.php" method="post">
+        <form action="login.php" method="post" id="form">
 
         Username:
         <input type="text" name="username">
         <span class="error">* <?php echo $usernameErr;?></span>
         <br>
 
-        Password: <input type="text" name="password">
-        <span class="error">* <?php echo $passwordErr;?></span>
+        Password: <input type="text" name="pa55word">
+        <span class="error">* <?php echo $pa55wordErr;?></span>
         <br>
         <input type="submit" value="Login">
-        <br>
-        <input type="button" id="btn_start" value="Start Game">
         <br>
         </form>
         <img src=cards/back_cards-07.png width="100%" height="auto">

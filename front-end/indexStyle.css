@@ -7,3 +7,7 @@ html{
     width: 300px;
     list-style-type:disc ;
 }
+#form{
+    float: center;
+    align-content: center;
+}
