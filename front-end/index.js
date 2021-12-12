@@ -17,4 +17,4 @@ function handleLogin(){ // we need to do something with this
 function handleStart(){
     console.log("Start button clicked");
     window.location.href = "game.html";
-}//end handleStart    
+}//end handleStart
