@@ -5,8 +5,15 @@ $username = $_GET['User'];
 
 echo $username;
 
+$result = mysqli_query($link,"SELECT wins FROM blackjack WHERE username = '$username'");
+$rowWins = mysqli_fetch_assoc($result);
+$count = $row["wins"];
+$count++;
+$result = mysqli_query($link,"UPDATE blackjack SET wins = '$count' WHERE username = '$username'");
+header("Location: game.php");
+
 //Get the wins from the database by the username
-$query1 = 'SELECT wins FROM blackjack
+/*$query1 = 'SELECT wins FROM blackjack
            WHERE username = "' . $username . '"';
 $statement1 = $db->prepare($query1);
 //$statement1->bindValue(':username', $username);
@@ -26,5 +33,5 @@ $statement2 = $db->prepare($query);
 $statement2->bindValue(':wins', $wins);
 //$statement2->bindValue(':username', $username);
 $statement2->execute();
-$statement2->closeCursor();
+$statement2->closeCursor();*/
 ?>
