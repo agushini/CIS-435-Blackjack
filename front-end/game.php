@@ -57,12 +57,16 @@
         <br>
         <h3 id = "whoWins"> </h3>
         <button id="btn_deal">Deal</button>
+        <vr>
         <button id="btn_hit">Hit</button>
+        <vr>
         <button id="btn_stay">Stay</button>
+        <hr>
+        <button id="test">Reset Game</button>
         <br>
         <input type="button" id="btn_logout" value="Logout">
         <br>
-        <button id="test">Reset Game</button>
+        
 
     </body>
 </html>

@@ -249,7 +249,7 @@ function handleHit(){
         }
         console.log("Player total: " + playerTotal);
     }
-}//handleHit
+}
 
 function handleStay(){ 
     //stay should just switch the turns to the dealer
@@ -292,25 +292,27 @@ function handleDeal(){
         //should deal two cards to dealer and player
         if (!firstDeal) {
             firstDeal = true;
-        }
-        for (var i = 0; i < 2; i++){ 
-            cardLocation++;
-            var card = getCardValue(dealCard());;
-            playerTotal = playerTotal + card;
-            document.getElementById("playerTotal").innerHTML = "Player Total: " + playerTotal;
-            playerTurn = 0;
-            console.log("To player: " + card);
-            if (i == 0) {
-                card = getCardValue(dealCard());
-                dealerTotal = dealerTotal + card;
-                document.getElementById("dealerTotal").innerHTML = "Dealer Total: " + dealerTotal;
-                playerTurn = 1;
-                console.log("To dealer: " + card);
+            for (var i = 0; i < 2; i++){ 
+                cardLocation++;
+                var card = getCardValue(dealCard());;
+                playerTotal = playerTotal + card;
+                document.getElementById("playerTotal").innerHTML = "Player Total: " + playerTotal;
+                playerTurn = 0;
+                console.log("To player: " + card);
+                if (i == 0) {
+                    card = getCardValue(dealCard());
+                    dealerTotal = dealerTotal + card;
+                    document.getElementById("dealerTotal").innerHTML = "Dealer Total: " + dealerTotal;
+                    playerTurn = 1;
+                    console.log("To dealer: " + card);
+                }
+                console.log("Player Total: " + playerTotal + " Dealer Total: " + dealerTotal);  
             }
-            console.log("Player Total: " + playerTotal + " Dealer Total: " + dealerTotal);  
-        }
-        if (checkBust(playerTotal, 21) == true){
-            playerTurn = 0;
+            if (checkBust(playerTotal, 21) == true){
+                playerTurn = 0;
+            }
+        } else {
+            alert("Can't deal again. Please hit or stay.");
         }
     }
 }

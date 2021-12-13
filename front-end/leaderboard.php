@@ -22,6 +22,7 @@ $statement->closeCursor();
 <div id=body>
     <body>
         <header><h1>Top ranking players</h1></header>
+        <div id=h2contents>
         <h2>
         <?php
             foreach($leaderboard as $emp) {
@@ -29,6 +30,7 @@ $statement->closeCursor();
             }
         ?>
         </h2>
+    </div>
     </body>
 </div>
 </html>
