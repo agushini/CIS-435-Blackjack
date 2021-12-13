@@ -1,0 +1,20 @@
+html{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+header
+{
+    background-color: aquamarine;
+    text-align: center;
+    font-size: 35px;
+    padding: 0;
+}
+#body
+{
+    background-image:   url(cards/leaderboardbg.png);
+    background-color: aquamarine;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}

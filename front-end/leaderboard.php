@@ -13,16 +13,20 @@ $statement->closeCursor();
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <link rel="stylesheet" href="leaderboardStyle.css">
+  
+<head>
+    <title>Leaderboard</title>
+    <meta charset="utf-8">
+</head> 
 
-    <head>
-        <title>Leaderboard</title>
-        <meta charset="utf-8">
-    </head>
+<div id=body>
     <body>
-        <h1>Top ranking players</h1>
+        <header><h1>Top ranking players</h1></header>    
         <?php
             foreach($leaderboard as $emp) {
                 echo $emp['username'] . " " . $emp['wins'] . '<br>';
             }
-            ?>
+        ?>
+    </body>
+</div>
 </html>
