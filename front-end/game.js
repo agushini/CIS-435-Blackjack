@@ -5,6 +5,8 @@ let cardLocation = 0;
 let playerTotal = 0;
 let dealerTotal = 0;
 var user = "";
+let won = false;
+let gameOver = false;
 
 function getCookie(cname) {
     let name = cname + "=";
@@ -242,6 +244,10 @@ function checkBust(total, bustAt){
 
 //logout button should work now -Amaya
 function handleLogout(){
+    if (won) {
+        incrementWin();
+        alert("Logging out and updating wins for user.");
+    }
     console.log("Logout button clicked");
     window.location.href = "index.php";
 }//end handleLogout
@@ -278,7 +284,7 @@ function handleStay(){
 
 function dealerPlay(){
 
-    while (dealerTotal <= 17) {
+    while (dealerTotal <= 17 || dealerTotal < playerTotal) {
         if (checkBust(dealerTotal, 21)){
             document.getElementById("dealerTotal").innerHTML = "Dealer busted: " + dealerTotal; 
         }
@@ -293,8 +299,8 @@ function dealerPlay(){
         */
         console.log("Dealer Total: " + dealerTotal);
         cardLocation++;
-        checkWin();
     }
+    checkWin();
 }
 
 function handleDeal(){ 
@@ -327,23 +333,37 @@ function handleDeal(){
 
 function checkWin(){
     if((playerTotal > dealerTotal) || (dealerTotal > 21)){
-        var username = getCookie("user");
-        window.location.href = "incrementWin.php?User=" + username;
         document.getElementById("whoWins").innerHTML = "Player Wins!";
+        won = true;
+        gameOver = true;
     }
     else if ((playerTotal < dealerTotal) && (dealerTotal <= 21)){
         //player loses
         document.getElementById("whoWins").innerHTML = "Dealer Wins!";
+        won = false;
+        gameOver = true;
     }
     else {
         document.getElementById("whoWins").innerHTML = "Nobody Wins, Tie";
-        //push
+        won = false;
+        gameOver = true;
     }
+}
+
+function incrementWin(){
+    var username = getCookie("user");
+    window.location.href = "incrementWin.php?User=" + username;
 }
 
 
 function resetGame(){
+    
+    if (won) {
+        incrementWin();
+        won = false;
+    }
 
+    gameOver = false;
     playerTurn = 1;
     playerTotal = 0;
     dealerTotal = 0;
