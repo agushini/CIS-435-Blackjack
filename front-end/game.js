@@ -232,7 +232,8 @@ function checkBust(total, bustAt){
         //playerTurn = 0; //might not need this here if i use this for player and dealer
         console.log("Player Total: BUST!! " + playerTotal);
         document.getElementById("playerTotal").innerHTML = "Player Total: BUST!! " + playerTotal;
-        document.getElementById("whoWins").innerHTML = "Dealer Wins! Player busted!"; 
+        document.getElementById("whoWins").innerHTML = "Dealer Wins! Player busted!";
+        gameOver = true;
 
         return true;
     }
@@ -254,7 +255,10 @@ function handleLogout(){
 
 function handleHit(){
     console.log("Hit button clicked");
-    if (checkBust(playerTotal, 21) == true){
+    if (gameOver) {
+        alert("Game over. Please restart game.");
+    }
+    else if (checkBust(playerTotal, 21) == true){
         console.log("Should be a bust");
         playerTurn = 0;
         
@@ -277,9 +281,13 @@ function handleHit(){
 function handleStay(){ 
     //stay should just switch the turns to the dealer
     console.log("Stay button clicked");
-    playerTurn = 0;
-    cardLocation = 2;
-    dealerPlay();
+    if (gameOver) {
+        alert("Game over. Please restart game.");
+    } else {
+        playerTurn = 0;
+        cardLocation = 2;
+        dealerPlay();
+    }
 }//handleStay
 
 function dealerPlay(){
@@ -309,25 +317,28 @@ function handleDeal(){
     }
     console.log("Deal button clicked");
 
-    for (var i = 0; i < 2; i++){ //should deal two cards to dealer and player
-        cardLocation++;
-        var card = getCardValue(dealCard());;
-        playerTotal = playerTotal + card;
-        document.getElementById("playerTotal").innerHTML = "Player Total: " + playerTotal;
-        playerTurn = 0;
-        console.log("To player: " + card);
-        if (i == 0) {
-            card = getCardValue(dealCard());
-            dealerTotal = dealerTotal + card;
-            document.getElementById("dealerTotal").innerHTML = "Dealer Total: " + dealerTotal;
-            playerTurn = 1;
-            console.log("To dealer: " + card);
+    if (gameOver) {
+        alert("Game over. Please restart game.");
+    } else {
+        for (var i = 0; i < 2; i++){ //should deal two cards to dealer and player
+            cardLocation++;
+            var card = getCardValue(dealCard());;
+            playerTotal = playerTotal + card;
+            document.getElementById("playerTotal").innerHTML = "Player Total: " + playerTotal;
+            playerTurn = 0;
+            console.log("To player: " + card);
+            if (i == 0) {
+                card = getCardValue(dealCard());
+                dealerTotal = dealerTotal + card;
+                document.getElementById("dealerTotal").innerHTML = "Dealer Total: " + dealerTotal;
+                playerTurn = 1;
+                console.log("To dealer: " + card);
+            }
+            console.log("Player Total: " + playerTotal + " Dealer Total: " + dealerTotal);  
         }
-        console.log("Player Total: " + playerTotal + " Dealer Total: " + dealerTotal);  
-    }
-    
-    if (checkBust(playerTotal, 21) == true){
-        playerTurn = 0;
+        if (checkBust(playerTotal, 21) == true){
+            playerTurn = 0;
+        }
     }
 }//handleDeal
 
