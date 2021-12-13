@@ -7,6 +7,7 @@ let dealerTotal = 0;
 var user = "";
 let won = false;
 let gameOver = false;
+let firstDeal = false;
 
 //Function fetches the cookie sent by login.php
 function getCookie(cname) {
@@ -86,8 +87,6 @@ function getCardValue(card){
             output = card;
             break;
     }
-    
-    
     return output;
 }
 
@@ -168,7 +167,7 @@ function testFunc (cardSuit, cardNum) {
     player = playerName + cardLocation; 
     displayCard(card, player);
 
-}//end testFunc()
+}
 
 //displays a card on the screen. Takes in 2 strings: one for the card png, and one for the location
 //i.e. card = "2C"  player = "d4"
@@ -233,7 +232,6 @@ function handleHit(){
     else if (checkBust(playerTotal, 21) == true){
         console.log("Should be a bust");
         playerTurn = 0;
-        
     } else {
         playerTurn = 1;
         cardLocation++;
@@ -287,6 +285,9 @@ function handleDeal(){
         alert("Game over. Please restart game.");
     } else {
         //should deal two cards to dealer and player
+        if (!firstDeal) {
+            firstDeal = true;
+        }
         for (var i = 0; i < 2; i++){ 
             cardLocation++;
             var card = getCardValue(dealCard());;
