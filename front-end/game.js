@@ -229,6 +229,9 @@ function handleHit(){
     if (gameOver) {
         alert("Game over. Please restart game.");
     }
+    else if (!firstDeal) {
+        alert("Can't hit until after the first deal.");
+    }
     else if (checkBust(playerTotal, 21) == true){
         console.log("Should be a bust");
         playerTurn = 0;
@@ -253,6 +256,9 @@ function handleStay(){
     console.log("Stay button clicked");
     if (gameOver) {
         alert("Game over. Please restart game.");
+    }
+    else if (!firstDeal) {
+        alert("Can't stay until after the first deal.");
     } else {
         playerTurn = 0;
         cardLocation = 2;

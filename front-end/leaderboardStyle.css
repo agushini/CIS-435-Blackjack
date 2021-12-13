@@ -18,3 +18,11 @@ header
     background-repeat: no-repeat;
     background-position: center;
 }
+h2
+{
+    text-align: center;
+    background-color: rgb(200, 255, 237);
+    border: 3px;
+    background-color: black;
+    font-size: medium;
+}
