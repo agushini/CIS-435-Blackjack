@@ -12,6 +12,8 @@ $statement->closeCursor();
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+<link rel="stylesheet" href="leaderboardStyle.css">
+
     <head>
         <title>Leaderboard</title>
         <meta charset="utf-8">
