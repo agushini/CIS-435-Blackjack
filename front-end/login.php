@@ -3,6 +3,7 @@
  $username = $_POST["username"];
  $pa55word = $_POST["pa55word"];
 
+ //Set the username as a cookie so that it can be grabbed by game.js
  setcookie("user", $username, time()+3600);
 
 //Check if the username already exists within the database
