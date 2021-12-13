@@ -4,7 +4,6 @@
 $dsn = 'mysql:host=localhost:3306;dbname=blackjack';
 
 //Create a user for phpMyAdmin with username 'JuicyJ' pa55word 'ice'.
-//User accounts -> Add user account -> User name: "JuicyJ" | Host name: use drop down menu to select "Local" | pa55word: "ice" | check all for global privileges
 $juicy = 'JuicyJ';
 $jay = 'ice';
 

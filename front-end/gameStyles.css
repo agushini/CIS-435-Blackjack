@@ -18,3 +18,21 @@
     height: 182.5px;
     width: 120px;
   }
+  #btngroup
+  {
+     margin: 20px;
+  }
+  .et_pb_button {
+    display: inline-block;
+    margin: 15px; /* space between buttons */
+    border: 1px;
+    border-style: solid;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: rgb(216, 219, 219);
+    font-size: 20px;
+    color: black;
+    border-radius: 10px;
+}

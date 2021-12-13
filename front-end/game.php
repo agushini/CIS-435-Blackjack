@@ -56,17 +56,15 @@
         <h3 id="playerTotal"> Player Total: </h3>
         <br>
         <h3 id = "whoWins"> </h3>
-        <button id="btn_deal">Deal</button>
-        <vr>
-        <button id="btn_hit">Hit</button>
-        <vr>
-        <button id="btn_stay">Stay</button>
-        <hr>
-        <button id="test">Reset Game</button>
-        <br>
-        <input type="button" id="btn_logout" value="Logout">
-        <br>
-        
+        <div id=btngroup>
+
+        <a class="et_pb_button" id="btn_deal" href="#">Deal</a>
+        <a class="et_pb_button"  id="btn_hit" href="#">Hit</a>
+         <a class="et_pb_button"id="btn_stay" href="#">Stay</a>
+        <hr></div>
+        <a class="et_pb_button"  id="btn_logout" href="#">User Logout</a>
+         <a class="et_pb_button" id="test" href="#">Reset Game</a>
+
 
     </body>
 </html>

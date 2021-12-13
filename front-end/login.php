@@ -14,9 +14,8 @@ $statement1->bindValue(':username', $username);
 $statement1->execute();
 $product1 = $statement1->fetch();
 $statement1->closeCursor();
+
 //If the username does not exist in the database, insert the username and pa55word with 0 wins into the database.
-//FIXME: Need to check if the pa55word is valid.
-//echo implode(" ", $product1);
 if (!$product1) {
     $wins = 0;
     $query2 = "INSERT INTO blackjack
@@ -50,11 +49,6 @@ header("Location: game.php");
     } else {
         echo "Logged in as $username!";
         header("Location: game.php");
-    }
-    //echo "Is this happening?";
-    //echo $product3;
-    //If the username and pa55word are correct
-
-    
+    } 
 }
 ?>
