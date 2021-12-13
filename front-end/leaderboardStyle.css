@@ -20,9 +20,11 @@ header
 }
 h2
 {
+    align-items: center;
+    padding: 30px;
+    width: fit-content;
     text-align: center;
     background-color: rgb(200, 255, 237);
-    border: 3px;
-    background-color: black;
-    font-size: medium;
+    border: 2px;
+    font-size: large;
 }

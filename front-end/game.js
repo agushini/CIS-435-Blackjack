@@ -267,7 +267,6 @@ function handleStay(){
 }
 
 function dealerPlay(){
-
     while (dealerTotal <= 17 || dealerTotal < playerTotal) {
         if (checkBust(dealerTotal, 21)){
             document.getElementById("dealerTotal").innerHTML = "Dealer busted: " + dealerTotal; 
