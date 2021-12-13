@@ -8,6 +8,7 @@ var user = "";
 let won = false;
 let gameOver = false;
 
+//Function fetches the cookie sent by login.php
 function getCookie(cname) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
@@ -24,17 +25,14 @@ function getCookie(cname) {
     return "";
   }
 
-function start() { //getting everything setup on window load
+function start() {
     
-    //in game.html
     let logoutButton = document.querySelector('#btn_logout');
     let hitButton = document.querySelector('#btn_hit');
     let stayButton = document.querySelector('#btn_stay');
     let dealButton = document.querySelector('#btn_deal');
-
     let testButton = document.querySelector('#test');
     
-    //in game.html
     if(logoutButton)
         logoutButton.addEventListener('click', handleLogout);
     if (hitButton)
@@ -47,55 +45,34 @@ function start() { //getting everything setup on window load
     if(testButton)
         testButton.addEventListener('click', resetGame);  
         
-    
-    createDeck();//intialize new deck
-}//end start()
+    //intialize new deck
+    createDeck();
+}
 
-
-function randomNum(a){ //returns 0-a randomly, no decimal and is inclusive
+//returns 0-a randomly, no decimal and is inclusive
+function randomNum(a){ 
     let min=0;
     let max=a;
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1) + min);
-}// end randomNum()
+}
 
 function dealCard(){
     var y = randomNum(playingDeck.length-1); 
     var x = randomNum(playingDeck[y].length-1);
     var output = 0;
     
-    /* 
-    Testing purposes
-    console.log(" y length : " + playingDeck.length + " x length : " + playingDeck[y].length);
-    console.log("Array indexes for the card  y,x: " + y + " " + x);
-    console.log(playingDeck[y][x])
-    console.log('full deck at location: ' + fullDeck[y][x])
-    */
-    output = playingDeck[y][x]; //this will be the card that is dealt
-    playingDeck[y].splice(x,1);//remove that card from the deck
+    //this will be the card that is dealt
+    output = playingDeck[y][x];
+    //remove that card from the deck
+    playingDeck[y].splice(x,1);
     
     console.log("Array indexes for the card  y,x: " + y + " " + x);
     testFunc(y,output);
-
-
-    //console.log(" y length : " + playingDeck.length + " x length : " + playingDeck[y].length);
     
     return output;
-
-    //testing the deck thats what most of this console stuff is
-    /*
-    var temp =  playingDeck.length;
-    console.log("output deck after splice: ")
-    for(var i = 0; i < temp; i++){
-        var temp1 = playingDeck[i].length;
-        for(var j = 0; j < temp1; j++){
-            console.log(playingDeck[i][j]);
-        }
-        console.log("newline");
-    }
-    */
-}//end dealCard()
+}
 
 function getCardValue(card){
     var output = 0;
@@ -123,7 +100,7 @@ function copyDeck(){
             x++
         }
     }
-}//end copyDeck()
+}
 
 function createDeck(){    
     for(var i = 0; i < 4; i++){
@@ -134,9 +111,8 @@ function createDeck(){
         }
     }
     copyDeck();
-}//end copyDeck
+}
 
-//-------------------------------------------------------------------------------------------------------
 function testFunc (cardSuit, cardNum) {
     var card;
     var player;
@@ -174,7 +150,6 @@ function testFunc (cardSuit, cardNum) {
             break;
         default:  
             break;
- 
     }
 
     switch(playerTurn){
@@ -189,7 +164,6 @@ function testFunc (cardSuit, cardNum) {
     }
 
     console.log(cardNum + cardSuit + " " + playerName + cardLocation); 
-
     card = cardNum + cardSuit; 
     player = playerName + cardLocation; 
     displayCard(card, player);
@@ -209,9 +183,9 @@ function displayCard (card, player) {
 	var div = document.getElementById(player);
 	div.firstElementChild.replaceWith(img);
 }
-//-------------------------------------------------------------------------------------------------------
 
-function checkIfCardsLeft(){ //if the deck gets empty, it causes issues for the array and dealing so this is a "reshuffle"
+//if the deck gets empty, it causes issues for the array and dealing so this is a "reshuffle"
+function checkIfCardsLeft(){ 
     var count = 0;
     for (var i = 0; i < playingDeck.length; i++){
         for (var j = 0; j < playingDeck[i].length; j++){
@@ -225,23 +199,21 @@ function checkIfCardsLeft(){ //if the deck gets empty, it causes issues for the 
     else if (count < 13){
         return false;
     }
-}//end checkIfCardsLeft();
+}
 
 function checkBust(total, bustAt){
     if (total > bustAt){
-        //playerTurn = 0; //might not need this here if i use this for player and dealer
         console.log("Player Total: BUST!! " + playerTotal);
         document.getElementById("playerTotal").innerHTML = "Player Total: BUST!! " + playerTotal;
         document.getElementById("whoWins").innerHTML = "Dealer Wins! Player busted!";
         gameOver = true;
-
         return true;
     }
     else {
         return false;
     }
 
-}//end checkBust()
+}
 
 //logout button should work now -Amaya
 function handleLogout(){
@@ -251,7 +223,7 @@ function handleLogout(){
     }
     console.log("Logout button clicked");
     window.location.href = "index.php";
-}//end handleLogout
+}
 
 function handleHit(){
     console.log("Hit button clicked");
@@ -288,7 +260,7 @@ function handleStay(){
         cardLocation = 2;
         dealerPlay();
     }
-}//handleStay
+}
 
 function dealerPlay(){
 
@@ -299,12 +271,6 @@ function dealerPlay(){
         var cardValue = getCardValue(dealCard());
         dealerTotal = dealerTotal + cardValue;
         document.getElementById("dealerTotal").innerHTML = "Dealer Total: " + dealerTotal;
-        /*
-        if(cardLocation == 5){
-            document.getElementById("dealerTotal").innerHTML = "Dealer busted: " + dealerTotal; 
-            //dealer shouldn't bust at 5?
-        }
-        */
         console.log("Dealer Total: " + dealerTotal);
         cardLocation++;
     }
@@ -320,7 +286,8 @@ function handleDeal(){
     if (gameOver) {
         alert("Game over. Please restart game.");
     } else {
-        for (var i = 0; i < 2; i++){ //should deal two cards to dealer and player
+        //should deal two cards to dealer and player
+        for (var i = 0; i < 2; i++){ 
             cardLocation++;
             var card = getCardValue(dealCard());;
             playerTotal = playerTotal + card;
@@ -340,7 +307,7 @@ function handleDeal(){
             playerTurn = 0;
         }
     }
-}//handleDeal
+}
 
 function checkWin(){
     if((playerTotal > dealerTotal) || (dealerTotal > 21)){
@@ -349,7 +316,6 @@ function checkWin(){
         gameOver = true;
     }
     else if ((playerTotal < dealerTotal) && (dealerTotal <= 21)){
-        //player loses
         document.getElementById("whoWins").innerHTML = "Dealer Wins!";
         won = false;
         gameOver = true;
